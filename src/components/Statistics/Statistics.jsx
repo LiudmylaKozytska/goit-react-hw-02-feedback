@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
-// import { Notification } from 'components/Notification/Notification';
+import { NotificationMessage } from 'components/Notification/Notification';
+import { StatisticItem, StatisticsList } from './StatisticsStyle';
 
 export const StatisticsBox = ({
   good,
@@ -8,14 +9,18 @@ export const StatisticsBox = ({
   total,
   positivePercentage,
 }) => {
-  return (
-    <div>
-      <p>Good: {good}</p>
-      <p>Neutral: {neutral}</p>
-      <p>Bad: {bad}</p>
-      <p>Total: {total}</p>
-      <p>Positive Feedback: {positivePercentage}</p>
-    </div>
+  return total === 0 ? (
+    <NotificationMessage message="There is no feedback"></NotificationMessage>
+  ) : (
+    <>
+      <StatisticsList>
+        <StatisticItem>Good: {good}</StatisticItem>
+        <StatisticItem>Neutral: {neutral}</StatisticItem>
+        <StatisticItem>Bad: {bad}</StatisticItem>
+      </StatisticsList>
+      <StatisticItem>Total: {total}</StatisticItem>
+      <StatisticItem>Positive Feedback: {positivePercentage}%</StatisticItem>
+    </>
   );
 };
 
